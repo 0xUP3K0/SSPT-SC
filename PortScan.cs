@@ -18,10 +18,12 @@ namespace SSPT_SC
         {
             Console.WriteLine("PortScanner v1.1");
             Console.WriteLine("------------------");
+            Console.WriteLine();
 
 
-            ConsoleColor color = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Eingabe Host oder IP: >");
+            Console.ResetColor();
             string hostVariable = Console.ReadLine() ?? "";
 
             try
@@ -34,8 +36,9 @@ namespace SSPT_SC
             }
 
             Console.WriteLine();
-            color = ConsoleColor.Yellow;
-            Console.WriteLine("Eingabe der Ports (entweder mit Komma getrennt, oder einen Bereich xxx-xxx) >", color);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Eingabe der Ports (entweder mit Komma getrennt, oder einen Bereich xxx-xxx) >");
+            Console.ResetColor();
 
             string portVariable = Console.ReadLine();
             Console.WriteLine();
@@ -46,17 +49,17 @@ namespace SSPT_SC
                 {
                     bool isPortOpen = new TcpClient().ConnectAsync(hostVariable, i).Wait(500);
 
-                    if (isPortOpen)
+                    if (!isPortOpen)
                     {
                         Console.Write(hostVariable + ":" + i);
-                        color = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(" False");
                         Console.ResetColor();
                     }
                     else
                     {
                         Console.Write(hostVariable + ":" + i);
-                        color = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine(" True");
                         Console.ResetColor();
                     }
@@ -71,17 +74,17 @@ namespace SSPT_SC
                 {
                     bool isPortOpen = new TcpClient().ConnectAsync(hostVariable, Convert.ToInt32(port)).Wait(500);
 
-                    if (isPortOpen)
+                    if (!isPortOpen)
                     {
                         Console.Write(hostVariable + ":" + Convert.ToInt32(port));
-                        color = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(" False");
                         Console.ResetColor();
                     }
                     else
                     {
                         Console.Write(hostVariable + ":" + Convert.ToInt32(port));
-                        color = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine(" True");
                         Console.ResetColor();
                     }
