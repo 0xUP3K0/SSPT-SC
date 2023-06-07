@@ -6,6 +6,6 @@ Die restllichen größeren 3 Übungen werden in Laufe dieser Woche fertiggestell
 UPDATE: <br>
 Übung 1 - Wikipedia Check --> [here](https://github.com/0xUP3K0/SSPT-SC/blob/master/WikiCheck.cs) <br>
 Übung 2 - PortScan --> [here](https://github.com/0xUP3K0/SSPT-SC/blob/master/PortScan.cs) <br>
-Übung 3 - Schere, Stein, paar Bier --> TBD
+Übung 3 - Schere, Stein, paar Bier --> [here](https://github.com/0xUP3K0/SSPT-SC/blob/master/SSP.cs) <br>
 
 Buy me [this](https://bringatrailer.com/listing/1967-porsche-910-3/) or a [choccy milk](https://paypal.me/TeraDudee) :D
