@@ -24,9 +24,9 @@
 
             //WikiCheck.WikipediaCheck();
 
-            PortScan.Portscan();
+            //PortScan.Portscan();
 
-            //SSP.Schere_Stein_Papier();
+            SSP.Schere_Stein_Papier();
         }
     }
 }
