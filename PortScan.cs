@@ -21,77 +21,87 @@ namespace SSPT_SC
             Console.WriteLine();
 
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Eingabe Host oder IP: >");
-            Console.ResetColor();
-            string hostVariable = Console.ReadLine() ?? "";
-
-            try
+            while (true)
             {
-                string testhost = hostVariable.Split(".")[0];
-            }
-            catch
-            {
-                Console.WriteLine("Bitte geben Sie eine gültige Seite ein!");
-            }
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Eingabe Host oder IP: >");
+                Console.ResetColor();
+                string hostVariable = Console.ReadLine() ?? "";
 
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Eingabe der Ports (entweder mit Komma getrennt, oder einen Bereich xxx-xxx) >");
-            Console.ResetColor();
-
-            string portVariable = Console.ReadLine();
-            Console.WriteLine();
-
-            if (portVariable.Contains("-"))
-            {
-                for (int i = Convert.ToInt32(portVariable.Split("-")[0]); i <= Convert.ToInt32(portVariable.Split("-")[1]); i++)
+                if (hostVariable.Trim().ToLower() == "quit")
                 {
-                    bool isPortOpen = new TcpClient().ConnectAsync(hostVariable, i).Wait(500);
+                    Environment.Exit(0);
+                }
 
-                    if (!isPortOpen)
+                try
+                {
+                    string testhost = hostVariable.Split(".")[1];
+                }
+                catch
+                {
+                    Console.WriteLine("Bitte geben Sie eine gültige Seite ein!");
+                    continue;
+                }
+
+
+
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Eingabe der Ports (entweder mit Komma getrennt, oder einen Bereich xxx-xxx) >");
+                Console.ResetColor();
+
+                string portVariable = Console.ReadLine();
+                Console.WriteLine();
+
+                if (portVariable.Contains("-"))
+                {
+                    for (int i = Convert.ToInt32(portVariable.Split("-")[0]); i <= Convert.ToInt32(portVariable.Split("-")[1]); i++)
                     {
-                        Console.Write(hostVariable + ":" + i);
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(" False");
-                        Console.ResetColor();
-                    }
-                    else
-                    {
-                        Console.Write(hostVariable + ":" + i);
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine(" True");
-                        Console.ResetColor();
+                        bool isPortOpen = new TcpClient().ConnectAsync(hostVariable, i).Wait(500);
+
+                        if (!isPortOpen)
+                        {
+                            Console.Write(hostVariable + ":" + i);
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine(" False");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.Write(hostVariable + ":" + i);
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine(" True");
+                            Console.ResetColor();
+                        }
                     }
                 }
-            }
-            else if (portVariable.Contains(","))
-            {
-                string[] ports = portVariable.Split(",");
-                Array.Sort(ports);
-
-                foreach (string port in ports)
+                else if (portVariable.Contains(","))
                 {
-                    bool isPortOpen = new TcpClient().ConnectAsync(hostVariable, Convert.ToInt32(port)).Wait(500);
+                    string[] ports = portVariable.Split(",");
 
-                    if (!isPortOpen)
+                    foreach (string port in ports)
                     {
-                        Console.Write(hostVariable + ":" + Convert.ToInt32(port));
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(" False");
-                        Console.ResetColor();
-                    }
-                    else
-                    {
-                        Console.Write(hostVariable + ":" + Convert.ToInt32(port));
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine(" True");
-                        Console.ResetColor();
+                        bool isPortOpen = new TcpClient().ConnectAsync(hostVariable, Convert.ToInt32(port)).Wait(500);
+
+                        if (!isPortOpen)
+                        {
+                            Console.Write(hostVariable + ":" + Convert.ToInt32(port));
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine(" False");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.Write(hostVariable + ":" + Convert.ToInt32(port));
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine(" True");
+                            Console.ResetColor();
+                        }
                     }
                 }
+                Console.WriteLine("Fertig!");
+                Console.WriteLine();
             }
-            Console.WriteLine("Fertig!");
-            Console.WriteLine();
         }
     }
 }

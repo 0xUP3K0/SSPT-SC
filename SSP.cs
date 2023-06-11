@@ -69,23 +69,33 @@ namespace SSPT_SC
                 int choicePC = rnd.Next(list.Count);
 
                 Console.WriteLine("Computer : " + list[choicePC]);
-                Console.WriteLine("------------------");
-                Console.WriteLine("SPIELSTAND:");
+
 
                 switch (list[choicePC])
                 {
                     case "Schere":
                         if (choiceS == "1")
                         {
+                            Console.WriteLine("Gewinner : Unentschieden");
+                            Console.WriteLine("------------------");
+                            Console.WriteLine("SPIELSTAND:");
                             Console.WriteLine("Spieler: " + counterH + " Computer: " + counterPC);
                         }
                         else if (choiceS == "2")
                         {
+                            Console.WriteLine("Gewinner : Spieler");
+                            Console.WriteLine("------------------");
+                            Console.WriteLine("SPIELSTAND:");
+
                             counterH++;
                             Console.WriteLine("Spieler: " + counterH + " Computer: " + counterPC);
                         }
                         else if (choiceS == "3")
                         {
+                            Console.WriteLine("Gewinner : Computer");
+                            Console.WriteLine("------------------");
+                            Console.WriteLine("SPIELSTAND:");
+
                             counterPC++;
                             Console.WriteLine("Spieler: " + counterH + " Computer: " + counterPC);
                         }
@@ -93,15 +103,27 @@ namespace SSPT_SC
                     case "Stein":
                         if (choiceS == "1")
                         {
+                            Console.WriteLine("Gewinner : Computer");
+                            Console.WriteLine("------------------");
+                            Console.WriteLine("SPIELSTAND:");
+
                             counterPC++;
                             Console.WriteLine("Spieler: " + counterH + " Computer: " + counterPC);
                         }
                         else if (choiceS == "2")
                         {
+                            Console.WriteLine("Gewinner : Unentschieden");
+                            Console.WriteLine("------------------");
+                            Console.WriteLine("SPIELSTAND:");
+
                             Console.WriteLine("Spieler: " + counterH + " Computer: " + counterPC);
                         }
                         else if (choiceS == "3")
                         {
+                            Console.WriteLine("Gewinner : Spieler");
+                            Console.WriteLine("------------------");
+                            Console.WriteLine("SPIELSTAND:");
+
                             counterH++;
                             Console.WriteLine("Spieler: " + counterH + " Computer: " + counterPC);
                         }
@@ -109,16 +131,28 @@ namespace SSPT_SC
                     case "Papier":
                         if (choiceS == "1")
                         {
+                            Console.WriteLine("Gewinner : Spieler");
+                            Console.WriteLine("------------------");
+                            Console.WriteLine("SPIELSTAND:");
+
                             counterH++;
                             Console.WriteLine("Spieler: " + counterH + " Computer: " + counterPC);
                         }
                         else if (choiceS == "2")
                         {
+                            Console.WriteLine("Gewinner : Computer");
+                            Console.WriteLine("------------------");
+                            Console.WriteLine("SPIELSTAND:");
+
                             counterPC++;
                             Console.WriteLine("Spieler: " + counterH + " Computer: " + counterPC);
                         }
                         else if (choiceS == "3")
                         {
+                            Console.WriteLine("Gewinner : Unentschieden");
+                            Console.WriteLine("------------------");
+                            Console.WriteLine("SPIELSTAND:");
+
                             Console.WriteLine("Spieler: " + counterH + " Computer: " + counterPC);
                         }
                         break;

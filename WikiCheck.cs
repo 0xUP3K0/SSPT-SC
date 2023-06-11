@@ -11,24 +11,43 @@ namespace SSPT_SC
     {
         public static void WikipediaCheck()
         {
-            Console.WriteLine("Geben Sie einen zu suchenden Namen ein. ACHTUNG: Bitte Großbuchstaben! >");
-            string name = Console.ReadLine();
-            string content = "";
-
-            if (name.Contains(" "))
+            while (true)
             {
-                content = new WebClient().DownloadString("https://de.wikipedia.org/wiki/" + name.Split(" ")[0] + "_" + name.Split(" ")[1]);
-            }
-            else
-            {
-                content = new WebClient().DownloadString("https://de.wikipedia.org/wiki/" + name);
-            }
-
-            foreach (string line in content.Split("\n"))
-            {
-                if (line.Contains("footer-info-lastmod"))
+                try
                 {
-                    Console.WriteLine(line.Split(">")[1].Split("<")[0].Trim());
+                    Console.WriteLine("Geben Sie einen zu suchenden Namen ein. ACHTUNG: Bitte Großbuchstaben! >");
+                    string name = Console.ReadLine();
+
+                    if (name.Trim() == "")
+                    {
+                        Environment.Exit(0);
+                    }
+
+                    string content = "";
+
+                    if (name.Contains(" "))
+                    {
+                        content = new WebClient().DownloadString("https://de.wikipedia.org/wiki/" + name.Split(" ")[0] + "_" + name.Split(" ")[1]);
+                    }
+                    else
+                    {
+                        content = new WebClient().DownloadString("https://de.wikipedia.org/wiki/" + name);
+                    }
+
+                    foreach (string line in content.Split("\n"))
+                    {
+                        if (line.Contains("footer-info-lastmod"))
+                        {
+                            Console.WriteLine(line.Split(">")[1].Split("<")[0].Trim());
+                            Console.WriteLine();
+                        }
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Bitte einen echten Namen mit großen Anfangsbuchstaben eingeben!");
+                    Console.WriteLine();
+                    continue;
                 }
             }
         }

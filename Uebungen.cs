@@ -17,25 +17,23 @@ namespace SSPT_SC
 
         public static void RechnenUndString()
         {
-            //TODO: Fehlerbehandlung
-
             Console.WriteLine("Please input your first number: >");
             int zahl1 = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Please input your second number: >");
             int zahl2 = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Sum of x & y");
+            Console.WriteLine();
+            Console.WriteLine("Sum of x & y: >");
             Console.WriteLine(zahl1 + zahl2);
             Console.WriteLine();
 
-            Console.WriteLine("Divide x through y");
+            Console.WriteLine("Divide x through y: >");
             Console.WriteLine(zahl1 / zahl2);
             Console.WriteLine();
 
-            Console.WriteLine("Combine both variables");
+            Console.WriteLine("Combine both variables: >");
             Console.WriteLine(zahl1.ToString() + zahl2.ToString());
-
         }
 
         // 2. Beispiel BMI
@@ -46,8 +44,6 @@ namespace SSPT_SC
 
         public static void BMI()
         {
-            //TODO: Fehlerbehandlung
-
             Console.WriteLine("Please input your weight [kg]: >");
             int weight = Convert.ToInt32(Console.ReadLine());
 
@@ -79,15 +75,13 @@ namespace SSPT_SC
 
         public static void Koerperoberflaeche()
         {
-            //TODO: Fehlerbehandlung
-
             Console.WriteLine("Please input the height [cm]: >");
             double height = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Please input the weight [kg]: >");
             double weight = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("Quadratmeter: " + Convert.ToInt32(Math.Sqrt(height * (weight / 3600))) + " m²");
+            Console.WriteLine("Quadratmeter: " + Math.Round(Convert.ToDouble(Math.Sqrt(height * (weight / 3600))), 2) + " m²");
         }
 
         // 4. Beispiel Schaltjahr
@@ -98,18 +92,26 @@ namespace SSPT_SC
 
         public static void Schaltjahr()
         {
-            //TODO: Fehlerbehandlung
+            Console.WriteLine("Please input a year or leave it blank for the current year: >");
+            string input = Console.ReadLine();
 
-            Console.WriteLine("Please input a year: >");
-            int year = Convert.ToInt32(Console.ReadLine());
-
-            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+            if (input == "")
             {
-                Console.WriteLine("Das Jahr " + year + " ist ein Schaltjahr.");
+                string schaltjahr = DateTime.IsLeapYear(DateTime.Now.Year) ? " ist ein Schaltjahr." : " ist kein Schaltjahr.";
+                Console.WriteLine("Das Jahr " + DateTime.Now.Year + schaltjahr);
             }
             else
             {
-                Console.WriteLine("Das Jahr " + year + " ist kein Schaltjahr.");
+                int year = Convert.ToInt32(input);
+
+                if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+                {
+                    Console.WriteLine("Das Jahr " + year + " ist ein Schaltjahr.");
+                }
+                else
+                {
+                    Console.WriteLine("Das Jahr " + year + " ist kein Schaltjahr.");
+                }
             }
         }
 
@@ -121,8 +123,6 @@ namespace SSPT_SC
 
         public static void CheckName()
         {
-            //TODO: Fehlerbehandlung
-
             Console.WriteLine("Please input a name: >");
             string name = Console.ReadLine();
 
@@ -141,8 +141,6 @@ namespace SSPT_SC
 
         public static void CheckNameParam(string name)
         {
-            //TODO: Fehlerbehandlung
-
             Console.WriteLine("Name: " + name);
             Console.WriteLine("Länge des Textes: " + name.Length);
 
